@@ -1,0 +1,113 @@
+<div class='container' style='padding-top:15px'>
+	<div class='row'>
+		<div class='col-xs-1'>
+			<h4>Year</h4>	
+		</div>
+		<div class='col-xs-2'>
+			<select class='form-control' >
+				<option selected>2014</option>
+				<option >2013</option>
+				<option >2012</option>
+				<option >2011</option>
+			</select>
+		</div>
+	</div>
+	<div class='row'>
+		<div class='col-xs-1'>
+			<h4>Policy</h4>	
+		</div>
+		<div class='col-xs-2'>
+			<select class='form-control' ng-init="initial = grower.policies[0].number" ng-model='initial' ng-options='policy.number as policy.number for policy in grower.policies'>
+				
+			</select>
+		</div>
+		<div class='col-xs-2'>
+			<button type="button" class="btn btn-primary" >
+        		Email
+    		</button>
+    		<button type="button" class="btn btn-primary" >
+        		Print
+    		</button>
+		</div>
+		<div class='col-xs-5 col-xs-offset-2 '>
+			<div class='pull-right'>
+				<button type="button" class="btn btn-primary" >
+	        		Submit to RMA
+	    		</button>
+				<div class="btn-group" dropdown>
+			      <button type="button" class="btn btn-danger">Digitally Sign</button>
+			      <button type="button" class="btn btn-danger dropdown-toggle">
+			        <span class="caret"></span>
+			        <span class="sr-only">Split button!</span>
+			      </button>
+			      <ul class="dropdown-menu" role="menu">
+			        <li><a href="#">Digitally Sign</a></li>
+			        <li><a href="#">Add Signature Date</a></li>
+			        <li><a href="#">Upload Signed Application</a></li>
+			      </ul>
+			    </div>
+			</div>
+		</div>
+	</div>
+
+	<div class='row' ng-repeat='coverage in coverages'>
+		<div class='col-xs-5'><h4>{{coverage.county}}, {{grower.policies[0].state}} {{coverage.crop}}<h4></div>
+		<div class='row' ng-repeat='database in coverage.databases'>
+			<div class='col-xs-12'>
+				<div class='panel panel-default'>
+					<div class='panel-body'>
+						<div class='col-xs-2' style='padding-left:0px'>
+							<p>Unit: {{database.unit}}<p>
+							<p>Practice: {{database.practice}}<p>
+							<p>Type: {{database.type}}<p>
+							<a>Details<a>
+						</div>
+						<div class='col-xs-2'>
+							<div class="form-group">
+						   		<h5>Total Production</h5>
+						    	<input  class="form-control">
+						  	</div>
+						</div>
+						<div class='col-xs-2'>
+							<div class="form-group">
+						   		<h5>Planted Acres</h5>
+						    	<input  class="form-control">
+						  	</div>
+						</div>
+						<div class='col-xs-1'>
+							<div class="form-group">
+						   		<h5>Yield</h5>
+						    	<input class="form-control">
+						  	</div>
+						</div>
+						<div class='col-xs-2'>
+							<div class="form-group">
+						   		<h5>Yield Descriptor</h5>
+						    	<select class="form-control">
+								  <option>1</option>
+								  <option>2</option>
+								  <option>3</option>
+								  <option>4</option>
+								  <option>5</option>
+								</select>
+						  	</div>
+						</div>
+						<div class='col-xs-2'>
+							<div class="form-group">
+						   		<h5>Record Type</h5>
+						    	<select class="form-control">
+								  <option>1</option>
+								  <option>2</option>
+								  <option>3</option>
+								  <option>4</option>
+								  <option>5</option>
+								</select>
+						  	</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
