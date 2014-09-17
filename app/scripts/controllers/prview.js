@@ -1,6 +1,6 @@
-angular.module('mpProtoApp.controller.prview',['mpProtoApp.service.grower'])
+angular.module('mpProtoApp.controller.prview',['mpProtoApp.service.grower','mpProtoApp.controller.modal'])
 
-.controller('prviewCtrl', function ($scope,grower) {
+.controller('prviewCtrl', function ($scope,grower,$modal) {
 	$scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -11,6 +11,14 @@ angular.module('mpProtoApp.controller.prview',['mpProtoApp.service.grower'])
 
     $scope.coverages=grower.grower.policies[0].coverages
 
-    console.log($scope.grower.policies[0].number)
+    $scope.open = function () {
+
+	    var modalInstance = $modal.open({
+	      templateUrl: "partials/modals/prModals/prPrintModal.html",
+	      controller: "modalInstanceCtrl",
+	      size: 'lg',
+	      
+	    });
+	}
 
 });
