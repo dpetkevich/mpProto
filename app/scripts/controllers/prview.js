@@ -11,7 +11,17 @@ angular.module('mpProtoApp.controller.prview',['mpProtoApp.service.grower','mpPr
 
     $scope.coverages=grower.grower.policies[0].coverages
 
-    $scope.open = function () {
+    $scope.openEmailModal = function () {
+
+	    var modalInstance = $modal.open({
+	      templateUrl: "partials/modals/prModals/prEmailModal.html",
+	      controller: "modalInstanceCtrl",
+	      size: 'lg',
+	      
+	    });
+	}
+
+	$scope.openPrintModal = function () {
 
 	    var modalInstance = $modal.open({
 	      templateUrl: "partials/modals/prModals/prPrintModal.html",
@@ -20,5 +30,7 @@ angular.module('mpProtoApp.controller.prview',['mpProtoApp.service.grower','mpPr
 	      
 	    });
 	}
+
+	//$scope.changeYear = alert("For the purposes of this demo, policy year is not modifiable.")
 
 });

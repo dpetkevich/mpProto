@@ -1,4 +1,4 @@
-<div class='container' style='padding-top:15px'>
+<div class='container' style='padding-top:15px' ng-init="!validateClick">
 	<div class='row'>
 		<div class='col-xs-1'>
 			<h4>Year</h4>	
@@ -6,10 +6,16 @@
 		<div class='col-xs-2'>
 			<select class='form-control' >
 				<option selected>2014</option>
-				<option >2013</option>
-				<option >2012</option>
-				<option >2011</option>
+				<option>2013</option>
+				<option>2012</option>
+				<option>2011</option>
 			</select>
+		</div>
+		<div class='col-xs-3 pull-right'>
+			<h5 ng-model='appStatus'>Status:
+			<span ng-if="!validateClick">Open</span>
+			<span ng-if="validateClick">Pending</span>
+			</h5>
 		</div>
 	</div>
 	<div class='row'>
@@ -22,17 +28,17 @@
 			</select>
 		</div>
 		<div class='col-xs-2'>
-			<button type="button" class="btn btn-primary" ng-click="open()">
+			<button type="button" class="btn btn-primary" ng-click="openEmailModal()">
         		Email
     		</button>
-    		<button type="button" class="btn btn-primary" >
+    		<button type="button" class="btn btn-primary" ng-click="openPrintModal()" >
         		Print
     		</button>
 		</div>
-		<div class='col-xs-5 col-xs-offset-2 '>
+		<div class='col-xs-6 col-xs-offset-1 '>
 			<div class='pull-right'>
-				<button type="button" class="btn btn-primary" >
-	        		Submit to RMA
+				<button type="button" ng-model='validateClick' ng-disabled='validateClick' ng-click="validateClick=true" class="btn btn-primary" >
+	        		<span >Validate</span>
 	    		</button>
 				<div class="btn-group" dropdown>
 			      <button type="button" class="btn btn-danger">Digitally Sign</button>
@@ -83,24 +89,87 @@
 						<div class='col-xs-2'>
 							<div class="form-group">
 						   		<h5>Yield Descriptor</h5>
-						    	<select class="form-control">
-								  <option>1</option>
-								  <option>2</option>
-								  <option>3</option>
-								  <option>4</option>
-								  <option>5</option>
+						    	<select class="form-control" >
+									<option value=''>A</option>
+									<option value=''>AY</option>
+									<option value=''>G</option>
+									<option value=''>GY</option>
+									<option value=''>NA</option>
+									<option value=''>NG</option>
+									<option value=''>NV</option>
+									<option value=''>V</option>
+									<option value=''>VY</option>
+									<option value=''>PA</option>
+									<option value=''>PG</option>
+									<option value=''>PV</option>
+									<option value=''>PR</option>
+									<option value=''>DA</option>
+									<option value=''>DG</option>
+									<option value=''>DV</option>
+									<option value=''>B</option>
+									<option value=''>P</option>
+									<option value=''>GP</option>
+									<option value=''>PP</option>
+									<option value=''>VP</option>
+									<option value=''>C</option>
+									<option value=''>F</option>
+									<option value=''>OG</option>
+									<option value=''>Q</option>
+									<option value=''>U</option>
+									<option value=''>Z</option>
+									<option value=''>GW</option>
+									<option value=''>NO</option>
+									<option value=''>NU</option>
+									<option value=''>NW</option>
+									<option value=''>OY</option>
+									<option value=''>PW</option>
+									<option value=''>UY</option>
+									<option value=''>VW</option>
+									<option value=''>WY</option>
+									<option value=''>AC</option>
+									<option value=''>AX</option>
+									<option value=''>EX</option>
+									<option value=''>GC</option>
+									<option value=''>GXIX</option>
+									<option value=''>NX</option>
+									<option value=''>SX</option>
+									<option value=''>TX</option>
+									<option value=''>VC</option>
+									<option value=''>VX</option>
+									<option value=''>NR</option>
+									<option value=''>R</option>
+									<option value=''>RY</option>
+									<option value=''>E</option>
+									<option value=''>EK</option>
+									<option value=''>I</option>
+									<option value=''>IL</option>
+									<option value=''>L</option>
+									<option value=''>N</option>
+									<option value=''>NK</option>
+									<option value=''>S</option>
+									<option value=''>SK</option>
+									<option value=''>T</option>
+									<option value=''>TK</option>
+									<option value=''>X</option>
+									<option value=''>J</option>
 								</select>
 						  	</div>
 						</div>
-						<div class='col-xs-2'>
+						<div class='col-xs-3'>
 							<div class="form-group">
 						   		<h5>Record Type</h5>
 						    	<select class="form-control">
-								  <option>1</option>
-								  <option>2</option>
-								  <option>3</option>
-								  <option>4</option>
-								  <option>5</option>
+								  <option>Production Sold/Commercial Storage</option>
+								  <option>Farm Stored Measured by Insured</option>
+								  <option>Pick/Daily Sales Records</option>
+								  <option>Automated Yield Monitoring System</option>
+								  <option>Field /option>
+								  <option>Farm Stores Measued by Authorized</option>
+								  <option>Livestock Feeding Records</option>
+								  <option>Claim for Indemnity</option>
+								  <option>Appraisal</option>
+								  <option>Field Harvest Records</option>
+								  <option>Other</option>
 								</select>
 						  	</div>
 						</div>
