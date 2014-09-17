@@ -20,15 +20,15 @@ angular
     'ui.router',
     'mpProtoApp.controller.main',
     'mpProtoApp.controller.prview',
-    
+
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
-     $urlRouterProvider.otherwise("/prview");
+     $urlRouterProvider.otherwise("/");
   //
   // Now set up the states
       $stateProvider
         .state('main', {
-          url: "/main",
+          url: "/",
           templateUrl: "partials/main.html",
           controller:"MainCtrl"
         })
