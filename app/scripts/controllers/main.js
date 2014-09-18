@@ -19,7 +19,7 @@ angular.module('mpProtoApp.controller.main',[])
     				{
 	    				title:'Client Overview',
 	    				active:false,
-	    				state:"main"
+	    				state:"main.cOverview"
     				},
     				{
 	    				title:'MP Policies',
@@ -28,7 +28,7 @@ angular.module('mpProtoApp.controller.main',[])
     				},
     				{
 	    				 title:'Production Reporting',
-	    				 state:"main.prview",
+	    				 state:"main.prview.mainForm",
 	    				 active:true,
     				},
     				{

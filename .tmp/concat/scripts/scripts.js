@@ -7795,24 +7795,52 @@ angular
     'ui.router',
     'mpProtoApp.controller.main',
     'mpProtoApp.controller.prview',
+    //'ct.ui.router.extras'
+    //'mgcrea.ngStrap',
+    //'mgcrea.ngStrap.tooltip',
 
   ])
   .config(["$stateProvider", "$urlRouterProvider", function ($stateProvider, $urlRouterProvider) {
      $urlRouterProvider.otherwise("/");
-  //
+  //$stickyStateProvider.enableDebug(true);
   // Now set up the states
       $stateProvider
         .state('main', {
           url: "/",
           templateUrl: "partials/main.html",
-          controller:"MainCtrl"
-        })
+          controller:"MainCtrl",
+          
 
-      .state('main.prview', {
-        url: "/prview",
-        templateUrl: "partials/main.prview.html",
-        controller:"prviewCtrl"
-      });
+        })
+        //prview
+        .state('main.prview', {
+          abstract: true,
+          url: "prview",
+          template:"<ui-view/>",
+
+          
+
+        })
+          //children of prview
+          .state('main.prview.mainForm', {
+            url: "/mainForm",
+            templateUrl: "partials/main.prview.html",
+            controller:"prviewCtrl",
+            
+
+          })
+          .state('main.prview.Esig', {
+           url: "/Esig",
+           templateUrl: "partials/main.prviewEsig.html",
+           controller:"prviewCtrl",
+          
+          })
+        //cOverview
+        .state('main.cOverview', {
+          url: "cOverview",
+          templateURL:"partials/main.cOverview.html",
+          
+        })
 }]);
 
 /**
@@ -7835,7 +7863,7 @@ angular.module('mpProtoApp.controller.main',[])
     				{
 	    				title:'Client Overview',
 	    				active:false,
-	    				state:"main"
+	    				state:"main.cOverview"
     				},
     				{
 	    				title:'MP Policies',
@@ -7844,7 +7872,7 @@ angular.module('mpProtoApp.controller.main',[])
     				},
     				{
 	    				 title:'Production Reporting',
-	    				 state:"main.prview",
+	    				 state:"main.prview.mainForm",
 	    				 active:true,
     				},
     				{
@@ -7890,6 +7918,10 @@ angular.module('mpProtoApp.controller.prview',['mpProtoApp.service.grower','mpPr
 
     $scope.coverages=grower.grower.policies[0].coverages
 
+    $scope.csAlert = function (){
+    	alert('Changing year and policy is not supported in this demo.')
+    }
+
     $scope.openEmailModal = function () {
 
 	    var modalInstance = $modal.open({
@@ -7910,9 +7942,59 @@ angular.module('mpProtoApp.controller.prview',['mpProtoApp.service.grower','mpPr
 	    });
 	}
 
-	//$scope.changeYear = alert("For the purposes of this demo, policy year is not modifiable.")
+	$scope.openSigModal = function () {
 
-}]);
+	    var modalInstance = $modal.open({
+	      templateUrl: "partials/modals/prModals/prAddSigDate.html",
+	      controller: "modalInstanceCtrl",
+	      size: 'sm',
+	    });
+	}
+
+	$scope.openUploadModal = function () {
+
+	    var modalInstance = $modal.open({
+	      templateUrl: "partials/modals/prModals/prUploadDoc.html",
+	      controller: "modalInstanceCtrl",
+	      size: 'sm',
+	    });
+	}
+
+	$scope.vCycle=1;
+
+	$scope.validation = function(vCycle){
+		switch(vCycle){
+			case 1:
+				vCycle++;
+				break;
+			case 2:
+				vCycle++;
+
+				
+				break;
+			case 3:
+				vCycle=2;
+				break;
+		}
+		$scope.vCycle=vCycle;
+
+		if(vCycle==2){
+			setTimeout(function()
+				{	
+					vCycle++;
+					$scope.vCycle=vCycle;
+					$scope.$apply()
+				},2000)
+
+		}
+		
+	}
+}])
+
+
+
+
+
 angular.module('mpProtoApp.service.grower', [])
 
 .factory('grower', function(){
@@ -8007,7 +8089,46 @@ angular.module('mpProtoApp.service.grower', [])
 
 });
 
-angular.module('mpProtoApp.controller.modal',[])
+angular.module('mpProtoApp.controller.datePicker',[])
+
+
+.controller('DatepickerDemoCtrl', ["$scope", function ($scope) {
+  $scope.today = function() {
+    $scope.dt = new Date();
+  };
+  $scope.today();
+
+  $scope.clear = function () {
+    $scope.dt = null;
+  };
+
+  // Disable weekend selection
+  $scope.disabled = function(date, mode) {
+    return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+  };
+
+  $scope.toggleMin = function() {
+    $scope.minDate = $scope.minDate ? null : new Date();
+  };
+  $scope.toggleMin();
+
+  $scope.open = function($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+
+    $scope.opened = true;
+  };
+
+  $scope.dateOptions = {
+    formatYear: 'yy',
+    startingDay: 1
+  };
+
+  $scope.initDate = new Date('2016-15-20');
+  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+  $scope.format = $scope.formats[0];
+}]);
+angular.module('mpProtoApp.controller.modal',['mpProtoApp.controller.datePicker'])
 
 
 // Please note that $modalInstance represents a modal window (instance) dependency.
@@ -8018,6 +8139,7 @@ angular.module('mpProtoApp.controller.modal',[])
 
   $scope.ok = function () {
     $modalInstance.close();
+    
   };
 
   $scope.cancel = function () {

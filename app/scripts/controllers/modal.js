@@ -1,4 +1,4 @@
-angular.module('mpProtoApp.controller.modal',[])
+angular.module('mpProtoApp.controller.modal',['mpProtoApp.controller.datePicker'])
 
 
 // Please note that $modalInstance represents a modal window (instance) dependency.
@@ -9,6 +9,7 @@ angular.module('mpProtoApp.controller.modal',[])
 
   $scope.ok = function () {
     $modalInstance.close();
+    
   };
 
   $scope.cancel = function () {

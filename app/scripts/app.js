@@ -20,22 +20,50 @@ angular
     'ui.router',
     'mpProtoApp.controller.main',
     'mpProtoApp.controller.prview',
+    //'ct.ui.router.extras'
+    //'mgcrea.ngStrap',
+    //'mgcrea.ngStrap.tooltip',
 
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
      $urlRouterProvider.otherwise("/");
-  //
+  //$stickyStateProvider.enableDebug(true);
   // Now set up the states
       $stateProvider
         .state('main', {
           url: "/",
           templateUrl: "partials/main.html",
-          controller:"MainCtrl"
-        })
+          controller:"MainCtrl",
+          
 
-      .state('main.prview', {
-        url: "/prview",
-        templateUrl: "partials/main.prview.html",
-        controller:"prviewCtrl"
-      });
+        })
+        //prview
+        .state('main.prview', {
+          abstract: true,
+          url: "prview",
+          template:"<ui-view/>",
+
+          
+
+        })
+          //children of prview
+          .state('main.prview.mainForm', {
+            url: "/mainForm",
+            templateUrl: "partials/main.prview.html",
+            controller:"prviewCtrl",
+            
+
+          })
+          .state('main.prview.Esig', {
+           url: "/Esig",
+           templateUrl: "partials/main.prviewEsig.html",
+           controller:"prviewCtrl",
+          
+          })
+        //cOverview
+        .state('main.cOverview', {
+          url: "cOverview",
+          templateURL:"partials/main.cOverview.html",
+          
+        })
 });
