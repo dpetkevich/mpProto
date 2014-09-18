@@ -1,5 +1,6 @@
 <div ng-init='mainViewSelected=true' ng-show='mainViewSelected==true' >
 	<div class='container' style='padding-top:15px' ng-init='vCycle=1' >
+		
 		<div class='row'>
 			<div class='col-xs-1'>
 				<h4>Year</h4>	
@@ -13,8 +14,12 @@
 				</select>
 			</div>
 			<div class='col-xs-3 pull-right'>
-			
-					<h5>
+					
+					<h5 style='margin:0px;'>
+					<span ng-init="docsSubmitted==false" ng-if='!docsSubmitted'>Documents Submitted: No</span>
+					<span ng-if='docsSubmitted'>Documents Submitted: Yes</span>
+					</h5>	
+					<h5 style='margin-top:5px'>
 					<span ng-if='vCycle==1'>Unvalidated</span>
 					<span ng-if='vCycle==2'>Pending</span>
 					<span ng-if='vCycle==3'>Approved</span>
@@ -47,15 +52,15 @@
 		        		<span  >Validate</span>
 		    		</button>
 					<div class="btn-group" dropdown>
-				      <button type="button" class="btn btn-danger" ng-click='signed=true;mainViewSelected=false'>Digitally Sign</button>
+				      <button type="button" class="btn btn-danger" ng-click='signed=true;mainViewSelected=false;docsSubmitted=true'>Digitally Sign</button>
 				      <button type="button" class="btn btn-danger dropdown-toggle">
 				        <span class="caret"></span>
 				        <span class="sr-only">Split button!</span>
 				      </button>
 				      <ul class="dropdown-menu" role="menu">
-				        <li><a ng-click='signed=true'>Digitally Sign</a></li>
-				        <li><a ng-click='openSigModal()'>Add Signature Date</a></li>
-				        <li><a ng-click='openUploadModal()'>Upload Signed Application</a></li>
+				        <li><a ng-click='signed=true;mainViewSelected=false;docsSubmitted=true'>Digitally Sign</a></li>
+				        <li><a ng-click='openSigModal();signed=true'>Add Signature Date</a></li>
+				        <li><a ng-click='openUploadModal();docsSubmitted=true'>Upload Signed Application</a></li>
 				      </ul>
 				    </div>
 				</div>
