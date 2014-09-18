@@ -38,14 +38,17 @@ angular
 
         })
         //prview
+
+
+
+        
         .state('main.prview', {
-          abstract: true,
           url: "prview",
-          template:"<ui-view/>",
-
-          
-
+          templateUrl:"partials/main.prview.html",
+          controller:'prviewCtrl'
         })
+        
+        /*
           //children of prview
           .state('main.prview.mainForm', {
             url: "/mainForm",
@@ -66,4 +69,5 @@ angular
           templateURL:"partials/main.cOverview.html",
           
         })
+*/
 });

@@ -1,4 +1,4 @@
-<div ui-view="main.prview.mainForm"
+<div ng-init='mainViewSelected=true' ng-show='mainViewSelected==true' >
 	<div class='container' style='padding-top:15px' ng-init='vCycle=1' >
 		<div class='row'>
 			<div class='col-xs-1'>
@@ -19,7 +19,7 @@
 					<span ng-if='vCycle==2'>Pending</span>
 					<span ng-if='vCycle==3'>Approved</span>
 					<span ng-if='!signed'>& Unsigned</span>
-					<span ng-if='signed'>& Signed on 19/25/14</span>
+					<span ng-if='signed'>& Signed on 09/25/14</span>
 					</h5>
 				
 			</div>
@@ -47,7 +47,7 @@
 		        		<span  >Validate</span>
 		    		</button>
 					<div class="btn-group" dropdown>
-				      <button type="button" class="btn btn-danger" ng-click='signed=true' ui-sref="main.prview.Esig	">Digitally Sign</button>
+				      <button type="button" class="btn btn-danger" ng-click='signed=true;mainViewSelected=false'>Digitally Sign</button>
 				      <button type="button" class="btn btn-danger dropdown-toggle">
 				        <span class="caret"></span>
 				        <span class="sr-only">Split button!</span>
@@ -191,4 +191,17 @@
 		</div>
 
 	</div>
+	
+</div>
+<!-- begin esign view -->
+<div ng-show='mainViewSelected==false' >
+	<div class='row' style='margin-top:30px'>
+		<div class='col-xs-2'>
+	<button type="button" ng-click='mainViewSelected=true' class="btn btn-default" >
+		 Back
+	</button>
+		</div>
+	</div>
+
+	<h3> This page will contain an electonic form that the agent and insured can sign.</h3>
 </div>

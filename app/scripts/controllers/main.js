@@ -28,7 +28,7 @@ angular.module('mpProtoApp.controller.main',[])
     				},
     				{
 	    				 title:'Production Reporting',
-	    				 state:"main.prview.mainForm",
+	    				 state:"main.prview",
 	    				 active:true,
     				},
     				{
