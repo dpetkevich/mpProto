@@ -7813,14 +7813,17 @@ angular
 
         })
         //prview
+
+
+
+        
         .state('main.prview', {
-          abstract: true,
           url: "prview",
-          template:"<ui-view/>",
-
-          
-
+          templateUrl:"partials/main.prview.html",
+          controller:'prviewCtrl'
         })
+        
+        /*
           //children of prview
           .state('main.prview.mainForm', {
             url: "/mainForm",
@@ -7841,6 +7844,7 @@ angular
           templateURL:"partials/main.cOverview.html",
           
         })
+*/
 }]);
 
 /**
@@ -7872,7 +7876,7 @@ angular.module('mpProtoApp.controller.main',[])
     				},
     				{
 	    				 title:'Production Reporting',
-	    				 state:"main.prview.mainForm",
+	    				 state:"main.prview",
 	    				 active:true,
     				},
     				{
@@ -8019,21 +8023,21 @@ angular.module('mpProtoApp.service.grower', [])
                         unit:'0001-0001',
                         practice:'Continuous',
                         type:'Grain',
-                        legals:'',
+                        legals:['1604-128-1','1604-128-2','1604-128-3'],
                         farmName:''
                       },
                       {
                         unit:'0001-0002',
                         practice:'Continuous',
                         type:'Grain',
-                        legals:'',
+                        legals:['1634-148-1','1634-148-2','1634-148-3'],
                         farmName:''
                       }
                       ,{
                         unit:'0001-0003',
                         practice:'Continuous',
                         type:'Grain',
-                        legals:'',
+                        legals:['1634-178-1','1634-178-2'],
                         farmName:''
                       }
 
@@ -8048,21 +8052,21 @@ angular.module('mpProtoApp.service.grower', [])
                         unit:'0001-0001',
                         practice:'Continuous',
                         type:'Grain',
-                        legals:'',
+                        legals:['2344-172-1','2344-172-2'],
                         farmName:''
                       },
                       {
                         unit:'0001-0002',
                         practice:'Continuous',
                         type:'Grain',
-                        legals:'',
+                        legals:['2344-142-1','2344-142-2'],
                         farmName:''
                       }
                       ,{
                         unit:'0001-0003',
                         practice:'Continuous',
                         type:'Grain',
-                        legals:'',
+                        legals:['3344-142-1','3244-142-4'],
                         farmName:''
                       }
 
