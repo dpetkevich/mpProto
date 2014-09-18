@@ -72,7 +72,13 @@
 								<p>Unit: {{database.unit}}<p>
 								<p>Practice: {{database.practice}}<p>
 								<p>Type: {{database.type}}<p>
-								<a>Details<a>
+								<a ng-click='seeDetails=true' ng-show='!seeDetails' ng-init='!seeDetails'>Details</a>
+								<div ng-show='seeDetails' class='legals'>
+									<p>Legals</p>
+									<p ng-repeat='legal in database.legals'>{{legal}}</p>
+									<a ng-click='seeDetails=false' ng-show='seeDetails' >Collapse Details</a>
+								</div>
+ 
 							</div>
 							<div class='col-xs-2'>
 								<div class="form-group">
